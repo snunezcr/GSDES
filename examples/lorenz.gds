@@ -2,6 +2,8 @@
 #
 # Eric Jakobsson, Beckman-UIUC
 # Santiago Nunez-Corrales, Informatics-UIUC
+#
+# Example case 1: Stochastic Lorenz Equations
 
 model {
   annotations {
@@ -15,83 +17,83 @@ model {
   }
 
   execution {
-    distributed : true;
-    numprocs : 100;
-    top: level 0;
-    noisy : on;
-    ensemble : 10;
+    distributed true;
+    processes 100;
+    startat 0;
+    noisy true;
+    ensemble 10;
   }
 
   parameters {
     sourced real a {
       label "Prandtl number";
-      source ["netcdf", "weather.nc", "PN"];
+      source netcdf [ "weather.nc", "PN" ];
     }
 
-    stochastic real b {
+    sto real b {
       label "Rayleigh number";
       distribution exponential;
-      parameters [30, 1, 0, 0, 0];
+      arguments [30, 1, 0, 0, 0];
     }
 
-    stochastic real c {
+    sto real c {
       label "Dimension number";
       distribution fpe fp1;
     }
 
-    deterministic real k {
-      "Noise multiplier";
+    det real k {
+      label "Noise multiplier";
       value 1.0;
     }
   }
 
   manifold {
-    deterministic real X {
+    det real X {
       label "Stream function";
       range [-2e10, 2e10];
       delta [0.001, 0.01];
     }
 
-    deterministic real Y {
+    det real Y {
       label "Temperature gradient";
       range [-2e10, 2e10];
       delta [0.005, 0.05];
     }
 
-    deterministic real Z {
+    det real Z {
       label "Temperature gradient";
       range [-2e10, 2e10];
       delta [0.001, 0.01];
     }
 
-    deterministic time t {
+    det time t {
       label "Time";
       range [0, 10000];
       delta [0.0001, 0.001];
     }
 
-    stochastic real W_1 {
+    sto real W_1 {
       label "Noise for X";
       distribution exponential;
-      parameters [30, 1, 0, 0, 0];
+      arguments [30, 1, 0, 0, 0];
     }
 
-    stochastic real W_2 {
+    sto real W_2 {
       label "Noise for Y";
       distribution exponential;
-      parameters [30, 1, 0, 0, 0];
+      arguments [30, 1, 0, 0, 0];
     }
 
-    stochastic real W_3 {
+    sto real W_3 {
       label "Noise for X";
       distribution exponential;
-      parameters [30, 1, 0, 0, 0];
+      arguments [30, 1, 0, 0, 0];
     }
   }
 
   fpe {
     fp1 {
-      diff W on (X Y) by (t);
+      diff c on (X Y) by (t);
       drift fixed [0.4, 0.5];
       diffusion fixed [ [0.1, 0.9], [0.5, 0,5] ];
     }
@@ -99,19 +101,17 @@ model {
 
   system {
     level 0 {
-      diff X by t = a * (Y - X) + k * W_1;
-      diff Y by t = X * (b - Z) - Y + k * W_2;
-      diff Z by t = X * Y - c * Z + k * W_3;
+      diff X on (t) by (t) = a * (Y - X) + k * W_1;
+      diff Y on (t) by (t) = X * (b - Z) - Y + k * W_2;
+      diff Z on (t) by (t) = X * Y - c * Z + k * W_3;
       initial [ (X, 1.0), (Y, 1.0), (Z, 2.0) ];
     }
   }
 
   output {
-      format
-      trajectory volume [X Y Z] with frequency sample 0.2;
-      phase plane [X Y] sample 0.5;
-      interaction X Z sample 1.0;
-      format "netcdf";
-      file "out.nc";
+      file netcdf "lorenz.nc";
+      trajectory [X Y Z] with frequency sample 0.2;
+      phase [X Y] sample 0.5;
+      interaction [X Z] sample 1.0;
     }
 }
