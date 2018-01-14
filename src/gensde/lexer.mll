@@ -34,7 +34,7 @@ let ws = [' ' '\r' '\t']
 let counter = digit+
 let realvalue = '-'? digit+ '.'? digit*
 let complexvalue = '-'? digit+ '.'? digit* ('+'|'-') digit+ '.'? digit* 'i'
-let version = digit+ ('.'? digit*)+
+let version = digit+ '.' digit+
 let date = ['0'-'9']['0'-'9']['0'-'9']['0'-'9'] '-' ['A'-'Z']['A'-'Z']['A'-'Z'] '-' ['0'-'9']['0'-'9']
 
 rule token =
