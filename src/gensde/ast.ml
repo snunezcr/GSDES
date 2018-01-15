@@ -65,9 +65,6 @@ type prb_function =
   | Gamma
   | FpeId of string
 
-(* Arguments for probability density functions *)
-type prg_args = float list;
-
 (* Values *)
 type var_value =
     RealVal of float
@@ -93,12 +90,12 @@ type source = {
 (* Parameter definition *)
 type param_stmt =
     Given of parid * field_type * string * source
-  | Sto of parid * field_type * string * prb_function * prb_args
+  | Sto of parid * field_type * string * prb_function * (float list)
   | Det of parid * field_type * string * var_value
 
 (* Degree of freedom in the manifold *)
 type mfld_stmt =
-    Sto of varid * field_type * string * prb_function * prb_args
+    Sto of varid * field_type * string * prb_function * (float list)
   | Det of varid * field_type * string * interval * interval
 
 (* Mathematical binary operators *)
@@ -172,8 +169,8 @@ type sde_stmt = Sde of differential * sde_expr
 
 (* Representation for initial conditions *)
 type init_cond = {
-  vid = varid;
-  vval = var_value;
+  vid : varid;
+  vval : var_value;
 }
 
 (* Representation of a system level*)
@@ -197,8 +194,8 @@ type outpt_stmt = {
 
 (* A model is the top level entity that contains all specifications *)
 type model = {
-  annot_block : annot_stmt list;
-  exec_block : exec_stmt list;
+  annot_block : annot_stmt;
+  exec_block : exec_stmt;
   param_block : param_stmt list;
   mnfld_block : mfld_stmt list;
   fpe_block : fpe_stmt list;

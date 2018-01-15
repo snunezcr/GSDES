@@ -63,7 +63,7 @@ rule token =
   | "affilitations"     { ANAFFILS }
   | "description"       { ANDESC }
   | "version"           { ANVERSION }
-  | "date"              { ANDDATE }
+  | "date"              { ANDATE }
 (* Execution *)
   | "execution"         { EXECS }
   | "distributed"       { EXDISTR }

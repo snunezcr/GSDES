@@ -1,23 +1,22 @@
-(**********************************************************)
-(* National Center for Supercomputing Applications and    *)
-(* Beckman Institute for Advanced Science and Technology  *)
-(* University of Illinois at Urbana-Champaign             *)
-(*                                                        *)
-(* Generalized Stochastic Differential Equations Solver   *)
-(* GSDES                                                  *)
-(* Santiago Nunez-Corrales <nunezco2@illinois.edu         *)
-(* Eric Jakobsson <jake@illinois.edu                      *)
-(**********************************************************)
-
+/**********************************************************/
+/* National Center for Supercomputing Applications and    */
+/* Beckman Institute for Advanced Science and Technology  */
+/* University of Illinois at Urbana-Champaign             */
+/*                                                        */
+/* Generalized Stochastic Differential Equations Solver   */
+/* GSDES                                                  */
+/* Santiago Nunez-Corrales <nunezco2@illinois.edu         */
+/* Eric Jakobsson <jake@illinois.edu                      */
+/**********************************************************/
 %{
   open Ast
   open Utils
-}%
+%}
 
 %token LPAREN RPAREN LSBRACK RSBRACK LBRACE RBRACE SEMI COMMA ASSIGN
 %token VALTRUE VALFALSE
 %token MODEL
-%token ANNOTS ANNAME ANAUTHS ANAFFILS ANDESC ANVERSION ANDDATE
+%token ANNOTS ANNAME ANAUTHS ANAFFILS ANDESC ANVERSION ANDATE
 %token EXECS EXDISTR EXPROCS EXSTART EXNOISY EXENSMBL
 %token TDET TSTO TGIVEN TREAL TCOMPLEX
 %token QLABEL QDIST QSOURCE QVAL QARGS QRANGE QDELTA
@@ -51,10 +50,65 @@
 %left OPPOWER
 %nonassoc NEG
 
-%start program
-%type <Ast.program> program
+%start model
+%type <Ast.model> model
 
 %%
 
-program:
-  MODEL LBRACE RBRACE
+an_nm:
+  ANNAME STRLIT SEMI
+  { $2 }
+
+an_dsc:
+  ANDESC STRLIT SEMI
+  { $2 }
+
+an_aut_single:
+  LPAREN INT COMMA STRLIT RPAREN
+  { { aid = $2; aname = $4 } }
+
+an_auts_list:
+  | an_aut_single
+    { [$1] }
+  | an_auts_list COMMA an_aut_single
+    { $1 @ [$3]}
+
+an_auts:
+  ANAUTHS LSBRACK an_auts_list RSBRACK SEMI
+  { $3 }
+
+an_aff_single:
+  LPAREN INT COMMA STRLIT RPAREN
+  { { afid = $2; aforg = $4 } }
+
+an_affs_list:
+  | an_aff_single
+    { [$1] }
+  | an_affs_list COMMA an_aff_single
+    { $1 @ [$3]}
+
+an_affs:
+  ANAFFILS LSBRACK an_affs_list RSBRACK SEMI
+  { $3 }
+
+an_ver:
+  ANVERSION VERSION SEMI
+  { $2 }
+
+an_dt:
+  ANDATE VERSION SEMI
+  { $2 }
+
+ant_stmt:
+  ANNOTS LBRACE an_nm an_dsc an_auts an_affs an_ver an_dt RBRACE
+  {
+    { aname = $3; adesc = $4; aauths $5;
+      aaffils = $6; aversion = $7; adate = $8 }
+  }
+
+model:
+  MODEL LBRACE ant_stmt exe_stmt par_blk mnf_blk fpe_blk sys_blk out_blk RBRACE
+  {
+    { annot_block = $3; exec_block = $4; param_block = $5; mnfld_block = $6;
+      fpe_block = $7; system_block = $8; outpt_block = $9 }
+  }
