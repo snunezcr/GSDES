@@ -11,7 +11,7 @@
 {
   open Parser
   open Lexing
-  open Complexnums
+  open Utils
 
   exception LexingError of string
 
@@ -33,12 +33,9 @@ let fpeid = ['a'-'a'] ['a'-'z' '0'-'9' '_']*
 let ws = [' ' '\r' '\t']
 let counter = digit+
 let realvalue = '-'? digit+ '.'? digit*
-let complexvalue = '-'? digit+ '.'? digit* ('+'|'-') digit+ '.'? digit* 'i'
-let version = digit+ '.' digit+
 let year = ['0'-'9']['0'-'9']['0'-'9']['0'-'9']
 let month = ['A'-'Z']['A'-'Z']['A'-'Z']
 let day = ['0'-'9']['0'-'9']
-let date = year '-' month '-' day
 
 rule token =
   parse
@@ -89,6 +86,7 @@ rule token =
   | "range"             { QRANGE }
   | "delta"             { QDELTA }
 (* Source types *)
+  | "csv"               { SRCCSV }
   | "netcdf"            { SRCNETCDF }
   | "hdf5"              { SRCHDF5 }
 (* Distributions *)
@@ -122,7 +120,6 @@ rule token =
   | '-'                 { OPMINUS }
   | '*'                 { OPTIMES }
   | '/'                 { OPDIVIDE }
-  | '%'                 { OPMOD }
   | '^'                 { OPPOWER }
 (* Trigonometric operators *)
   | "sin"               { OPSIN }
@@ -151,7 +148,7 @@ rule token =
   | "arccoth"           { OPARCCOTH }
 (* Exponentials and logarithms *)
   | "log"               { OPLOG }
-  | "exp"               { OPLOG }
+  | "exp"               { OPEXP }
 (* Output *)
   | "output"              { OUTPUT }
   | "file"                { OUTFILE }
@@ -168,9 +165,9 @@ rule token =
 (* Literals *)
   | counter as s          { INT(int_of_string s) }
   | realvalue as s        { REAL(float_of_string s ) }
-  | complexvalue as s     { COMPLEX(complex_of_string s) }
-  | version as s          { VERSION(s) }
-  | date as s             { DATE(s) }
+  | realvalue ('+'|'-') realvalue as s { COMPLEX(complex_of_string s) }
+  | counter '.' counter as s { VERSION(version_of_string s) }
+  | year '-' month '-' day { DATE(date_of_string s) }
   | '\"'                  { let buffer = [] in
                             STRLIT(string_lit buffer lexbuf) }
 (* End of file *)
@@ -178,8 +175,7 @@ rule token =
 (* Illegal characters *)
   | _ as c                { let p = lexeme_start_p lexbuf in
                             let msg = Printf.sprintf
-                                "[F: %s\tL:%d,\tC: %d] Fatal lexical error.
-                                Illegal character %s."
+                                "[F: %s\tL:%d,\tC: %d] Fatal lexical error. Illegal character %s."
                                 p.pos_fname
                                 p.pos_lnum
                                 (p.pos_cnum - p.pos_bol + 1)
@@ -196,8 +192,7 @@ and string_lit buf = parse
   '\"'      { String.concat "" (List.rev buf) }
   | eof       { let p = lexeme_start_p lexbuf in
                 let msg = Printf.sprintf
-                    "[F: %s\tL:%d,\tC: %d] Fatal lexical error.
-                    Unexpected end of file (EOF)."
+                    "[F: %s\tL:%d,\tC: %d] Fatal lexical error. Unexpected end of file (EOF)."
                     p.pos_fname
                     p.pos_lnum
                     (p.pos_cnum - p.pos_bol + 1)
@@ -205,8 +200,7 @@ and string_lit buf = parse
                 raise (Scanner_error msg) }
   | '\n'     { let p = lexeme_start_p lexbuf in
                 let msg = Printf.sprintf
-                    "[F: %s\tL:%d,\tC: %d] Fatal lexical error.
-                    Unexpected end of line (EOL)."
+                    "[F: %s\tL:%d,\tC: %d] Fatal lexical error. Unexpected end of line (EOL)."
                     p.pos_fname
                     p.pos_lnum
                     (p.pos_cnum - p.pos_bol + 1)

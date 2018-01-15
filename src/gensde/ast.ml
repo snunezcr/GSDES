@@ -8,15 +8,9 @@
 (* Santiago Nunez-Corrales <nunezco2@illinois.edu         *)
 (* Eric Jakobsson <jake@illinois.edu                      *)
 (**********************************************************)
+open Utils
 
 exception SyntaxError of string
-
-(* Dates are represented as YYYY-MMM-DD *)
-type adate = {
-  dyear : int;
-  dmonth: string;
-  dday : int;
-}
 
 (* A type for representing one author *)
 type aauth = {
@@ -29,12 +23,6 @@ type aauth = {
 type aafil = {
   afid : int;
   aforg : string;
-}
-
-(* Storage type for version *)
-type avers = {
-  avmajor : int;
-  avminor : int;
 }
 
 (* A list of authors with identities *)
@@ -114,7 +102,7 @@ type mfld_stmt =
   | Det of varid * field_type * string * interval * interval
 
 (* Mathematical binary operators *)
-type binop =  Plus | Minus | Times | Divide | Mod | Power
+type binop =  Plus | Minus | Times | Divide | Power
 
 (* Mathematical unary operators *)
 type unop = Sin | Cos | Tan | Csc | Sec | Cot
