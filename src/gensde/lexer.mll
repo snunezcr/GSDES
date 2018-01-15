@@ -27,15 +27,18 @@
 }
 
 let digit = ['0'-'9']
-let parid = ['a'-'z'] ['a'-'z' '0'-'9' '_']*
-let dofid = ['A'-'Z'] ['a'-'z' 'A'-'Z' '0'-'9' '_']*
+let parid = ['a'-'z'] ['a'-'z' '_']* ('[' digit+ ']')?
+let dofid = ['a'-'z' 'A'-'Z'] ['a'-'z' 'A'-'Z' '_']* ('[' digit+ ']')?
 let fpeid = ['a'-'a'] ['a'-'z' '0'-'9' '_']*
 let ws = [' ' '\r' '\t']
 let counter = digit+
 let realvalue = '-'? digit+ '.'? digit*
 let complexvalue = '-'? digit+ '.'? digit* ('+'|'-') digit+ '.'? digit* 'i'
 let version = digit+ '.' digit+
-let date = ['0'-'9']['0'-'9']['0'-'9']['0'-'9'] '-' ['A'-'Z']['A'-'Z']['A'-'Z'] '-' ['0'-'9']['0'-'9']
+let year = ['0'-'9']['0'-'9']['0'-'9']['0'-'9']
+let month = ['A'-'Z']['A'-'Z']['A'-'Z']
+let day = ['0'-'9']['0'-'9']
+let date = year '-' month '-' day
 
 rule token =
   parse
@@ -74,7 +77,7 @@ rule token =
 (* Types *)
   | "det"               { TDET }
   | "sto"               { TSTO }
-  | "sourced"           { TSOURCED }
+  | "given"             { TGIVEN }
   | "real"              { TREAL }
   | "complex"           { TCOMPLEX }
 (* Qualifiers *)
@@ -92,6 +95,7 @@ rule token =
   | "uniform"           { DUNIF }
   | "normal"            { DNORM }
   | "exponential"       { DEXP }
+  | "beta"              { DBETA }
   | "gamma"             { DGAMMA }
   | "fpe"               { DFPE }
 (* Parameters *)
@@ -108,6 +112,7 @@ rule token =
   | "by"                { DEBY }
   | '='                 { EQ }
 (* Fokker-Planck equations *)
+  | "pdf"               { FPEPDF }
   | "drift"             { FPEDRIFT }
   | "diffusion"         { FPEDIFF }
   | "fixed"             { FPEFIXED }
@@ -117,6 +122,7 @@ rule token =
   | '-'                 { OPMINUS }
   | '*'                 { OPTIMES }
   | '/'                 { OPDIVIDE }
+  | '%'                 { OPMOD }
   | '^'                 { OPPOWER }
 (* Trigonometric operators *)
   | "sin"               { OPSIN }
