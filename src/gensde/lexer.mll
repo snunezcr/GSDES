@@ -77,6 +77,7 @@ rule token =
   | "given"             { TGIVEN }
   | "real"              { TREAL }
   | "complex"           { TCOMPLEX }
+  | "time"              { TTIME }
 (* Qualifiers *)
   | "label"             { QLABEL }
   | "distribution"      { QDIST }

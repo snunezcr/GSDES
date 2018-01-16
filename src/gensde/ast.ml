@@ -5,8 +5,8 @@
 (*                                                        *)
 (* Generalized Stochastic Differential Equations Solver   *)
 (* GSDES                                                  *)
-(* Santiago Nunez-Corrales <nunezco2@illinois.edu         *)
-(* Eric Jakobsson <jake@illinois.edu                      *)
+(* Santiago Nunez-Corrales <nunezco2@illinois.edu>        *)
+(* Eric Jakobsson <jake@illinois.edu>                     *)
 (**********************************************************)
 open Utils
 
@@ -59,7 +59,7 @@ type field_type = Real | Complex | Time
 (* Probability density functions *)
 type prb_function =
     Uniform
-  | Gaussian
+  | Normal
   | Exponential
   | Beta
   | Gamma

@@ -21,7 +21,7 @@ model {
     processes 100;
     startat 0;
     noisy true;
-    ensemble 10;
+    ensemble 100;
   }
 
   parameters {
@@ -32,7 +32,7 @@ model {
 
     sto real b {
       label "Rayleigh number";
-      distribution exponential;
+      distribution gaussian;
       arguments [30, 1, 0, 0, 0];
     }
 
@@ -69,7 +69,7 @@ model {
     det time t {
       label "Time";
       range [0, 10000];
-      delta [0.0001, 0.001];
+      delta [0.0001, 0.01];
     }
 
     sto real W[1] {
@@ -101,9 +101,9 @@ model {
 
   system {
     level 0 {
-      diff X on (t) by (t) = a * (Y - X) + k * W_1;
-      diff Y on (t) by (t) = X * (b - Z) - Y + k * W_2;
-      diff Z on (t) by (t) = X * Y - c * Z + k * W_3;
+      diff X on (t) by (t) = a * (Y - X) + k * W[1];
+      diff Y on (t) by (t) = X * (b - Z) - Y + k * W[2];
+      diff Z on (t) by (t) = X * Y - c * Z + k * W[3];
       initial [ (X, 1.0), (Y, 1.0), (Z, 2.0) ];
     }
   }
