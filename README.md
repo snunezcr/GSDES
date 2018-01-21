@@ -31,7 +31,7 @@ At present, we focus on providing a solver that can handle general Stochastic
 Differential equation models and runs in parallel using Charm++. This is our
 milestone target for v1.0.
 
-# Future research
+## Future research
 
 After reaching the v1.0 milestone, our goal is to add the following features:
 
