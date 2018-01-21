@@ -1,12 +1,14 @@
 # GSDES
 # Generalized Stochastic Differential Equations Solver
 
-Prof. Eric Jakobsson (jake@illinois.edu)
+*Prof. Eric Jakobsson (jake@illinois.edu)*
 Beckman Institute for Advanced Science and Technology
 
-Santiago Nunez-Corrales (nunezco2@illinois.edu)
+*Santiago Nunez-Corrales (nunezco2@illinois.edu)*
 National Center for Supercomputing Applications
 Illinois Informatics Institute
+
+## Executive summary
 
 ## Project structure
 
@@ -40,9 +42,9 @@ Computational and Data Science Fellows 2017 Program.
 
 ## References
 
-> Kale, Laxmikant V., and Sanjeev Krishnan. "CHARM++: a portable concurrent
+* Kale, Laxmikant V., and Sanjeev Krishnan. "CHARM++: a portable concurrent
 object oriented system based on C++." In ACM Sigplan Notices, vol. 28, no. 10,
 pp. 91-108. ACM, 1993.
-> Gustafson, John L., and Isaac T. Yonemoto. "Beating Floating Point at its Own
+* Gustafson, John L., and Isaac T. Yonemoto. "Beating Floating Point at its Own
 Game: Posit Arithmetic." Supercomputing Frontiers and Innovations 4, no. 2
 (2017): 71-86.
