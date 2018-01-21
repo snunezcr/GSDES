@@ -51,3 +51,7 @@ let complex_of_string cplx =
   let cplx_parts = String.split_on_char ' ' no_minus in
   { re = float_of_string (List.nth cplx_parts 0);
     im = float_of_string (List.nth cplx_parts 1) }
+
+let time_of_string tm =
+  let time_parts = String.split_on_char 's' tm in
+  float_of_string (List.nth time_parts 0)

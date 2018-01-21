@@ -110,7 +110,7 @@ rule token =
   | "diff"              { DIFFEQ }
   | "on"                { DEON }
   | "by"                { DEBY }
-  | '='                 { EQ }
+  | '='                 { DEEQ }
 (* Fokker-Planck equations *)
   | "pdf"               { FPEPDF }
   | "drift"             { FPEDRIFT }
@@ -151,6 +151,9 @@ rule token =
 (* Exponentials and logarithms *)
   | "log"               { OPLOG }
   | "exp"               { OPEXP }
+(* Components of imaginary numbers *)
+  | "re"                { OPRE }
+  | "im"                { OPIM }
 (* Summation *)
   | "sum"               { OPSUM }
 (* Output *)

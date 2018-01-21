@@ -89,14 +89,14 @@ type source = {
 
 (* Parameter definition *)
 type param_stmt =
-    Given of parid * field_type * string * source
-  | Sto of parid * field_type * string * prb_function * (float list)
-  | Det of parid * field_type * string * var_value
+    GivenPar of parid * field_type * string * source
+  | StoPar of parid * field_type * string * prb_function * (float list)
+  | DetPar of parid * field_type * string * var_value
 
 (* Degree of freedom in the manifold *)
 type mfld_stmt =
-    Sto of varid * field_type * string * prb_function * (float list)
-  | Det of varid * field_type * string * interval * interval
+    StoMnf of varid * field_type * string * prb_function * (float list)
+  | DetMnf of varid * field_type * string * interval * interval
 
 (* Mathematical binary operators *)
 type binop =  Plus | Minus | Times | Divide | Power
@@ -106,7 +106,7 @@ type unop = Sin | Cos | Tan | Csc | Sec | Cot
           | Sinh | Cosh | Tanh | Csch | Sech | Coth
           | ASin | ACos | ATan | ACsc | ASec | ACot
           | ASinh | ACosh | ATanh | ACsch | ASech | ACoth
-          | Exp | Log | Neg
+          | Exp | Log | Re | Im | Neg | Sum | DifOp
 
 (* Left hand side of an DE        *)
 (*                                *)
@@ -119,6 +119,7 @@ type unop = Sin | Cos | Tan | Csc | Sec | Cot
 (*                                *)
 (* diff_on - diff_by = diff_on    *)
 type differential = {
+  diff_var : varid;
   diff_on : varid list;
   diff_by : varid list;
 }
@@ -182,13 +183,19 @@ type level_stmt = {
 
 (* An ouput segment determines the collection of *)
 type out_segment =
-    Trajectory of varid list * bool * float
-  | Phase of varid list * bool * float
+    Trajectory of varid list * float * bool
+  | Phase of varid list * float * bool
   | Interaction of varid list * float
+
+(* Source for a variable *)
+type destination = {
+  dinput : file_format;
+  dfile : string;
+}
 
 (* Output statements *)
 type outpt_stmt = {
-  outpt_format : file_format;
+  outpt_file : destination;
   outpt_segmts : out_segment list;
 }
 
