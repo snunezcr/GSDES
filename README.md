@@ -13,6 +13,32 @@
 
 ## Executive summary
 
+Many natural and human constructed dynamic systems are best described by
+stochastic differential equations.  This includes both systems in which quantum
+effects are explicitly significant, and also complex systems with too many
+variables to represent explicitly.  Packages for solving the dynamics of these
+systems typically represent such systems deterministically, using Riemann
+integration.  The deterministic approximation fails to correctly describe
+thresholds or tipping points.  Deterministic representations can be improved by
+adding noise, but this is typically done at substantial cost in computational
+efficiency.
+
+An alternative to Riemann integration is Lebesgue integration.  Unlike Riemann
+integration, Lebesgue integration naturally takes into account singularities in
+the function being integrated, including the effectively instantaneous
+fluctuations characteristic of noise due to uncontrolled variables.  Because
+Lebesgue integration is inherently as efficient as Riemann integration, this
+approach provides the ability to do stochastic integration as efficiently as
+deterministic integration.  This will be important for simulating chemical
+systems, nervous systems, biological populations, weather, astronomical
+many-body systems, social systems, and many others.
+
+The present project is to create a differential equation solver that will use
+Lebesgue integration.  The significance of the project will be to enable
+Lebesgue integration in a general differential equation solver, thus making
+stochastic representations of dynamical systems more efficient, and therefore
+more feasible. 
+
 ## Project structure
 
 ### gensde
