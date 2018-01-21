@@ -33,6 +33,7 @@ let fpeid = ['a'-'a'] ['a'-'z' '0'-'9' '_']*
 let ws = [' ' '\r' '\t']
 let counter = digit+
 let realvalue = '-'? digit+ '.'? digit*
+let timevalue = realvalue 's'
 let year = ['0'-'9']['0'-'9']['0'-'9']['0'-'9']
 let month = ['A'-'Z']['A'-'Z']['A'-'Z']
 let day = ['0'-'9']['0'-'9']
@@ -150,6 +151,8 @@ rule token =
 (* Exponentials and logarithms *)
   | "log"               { OPLOG }
   | "exp"               { OPEXP }
+(* Summation *)
+  | "sum"               { OPSUM }
 (* Output *)
   | "output"              { OUTPUT }
   | "file"                { OUTFILE }
@@ -166,6 +169,7 @@ rule token =
 (* Literals *)
   | counter as s          { INT(int_of_string s) }
   | realvalue as s        { REAL(float_of_string s ) }
+  | timevalue as s        { TIME(time_of_string s ) }
   | realvalue ('+'|'-') realvalue as s { COMPLEX(complex_of_string s) }
   | counter '.' counter as s { VERSION(version_of_string s) }
   | year '-' month '-' day { DATE(date_of_string s) }
