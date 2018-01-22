@@ -45,7 +45,7 @@ let get_lex_buf in_file =
 let lexer_parser main_file =
   let lex_buf = get_lex_buf main_file in
   try
-    Parser.program Lexer.token lex_buf
+    Parser.model Lexer.token lex_buf
   with
     Parsing.Parse_error -> raise (Ast.SyntaxError (loc_err lex_buf))
 

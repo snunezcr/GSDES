@@ -18,10 +18,10 @@
   (* Increment to line number *)
   let incr_lineno lexbuf =
     let curr_pos = lexbuf.lex_curr_p in
-    lexbif.lex_curr_p <- {
+    lexbuf.lex_curr_p <- {
       curr_pos with
         pos_lnum = curr_pos.pos_lnum + 1;
-        pos_bol = cur_pos.pos_cnum;
+        pos_bol = curr_pos.pos_cnum;
     }
   ;;
 }
@@ -175,7 +175,7 @@ rule token =
   | timevalue as s        { TIME(time_of_string s ) }
   | realvalue ('+'|'-') realvalue as s { COMPLEX(complex_of_string s) }
   | counter '.' counter as s { VERSION(version_of_string s) }
-  | year '-' month '-' day { DATE(date_of_string s) }
+  | year '-' month '-' day as s { DATE(date_of_string s) }
   | '\"'                  { let buffer = [] in
                             STRLIT(string_lit buffer lexbuf) }
 (* End of file *)
@@ -205,7 +205,7 @@ and string_lit buf = parse
                     p.pos_lnum
                     (p.pos_cnum - p.pos_bol + 1)
                 in
-                raise (Scanner_error msg) }
+                raise (LexingError msg) }
   | '\n'     { let p = lexeme_start_p lexbuf in
                 let msg = Printf.sprintf
                     "[F: %s\tL:%d,\tC: %d] Fatal lexical error. Unexpected end of line (EOL)."

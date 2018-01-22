@@ -216,8 +216,8 @@ par_blk:
   { $3 }
 
 mnf_interval:
-  LSBRACK COMMA RSBRACK
-  {}
+  LSBRACK var_val COMMA var_val RSBRACK
+  { { min = $2 ; max = $4 } }
 
 mnf_dt:
   QDELTA mnf_interval SEMI
@@ -229,9 +229,9 @@ mnf_rng:
 
 mnf_stmt:
     TDET var_type DOFID LBRACE var_lab mnf_rng mnf_dt RBRACE
-    { DetMnf($3, $2, $5, $6) }
+    { DetMnf(VarId($3), $2, $5, $6, $7) }
   | TSTO var_type DOFID LBRACE var_lab var_dist var_args RBRACE
-    { StoMnf($3, $2, $5, $6, $7) }
+    { StoMnf(VarId($3), $2, $5, $6, $7) }
 
 mnf_list:
       /* Empty: no parameters may be required */
@@ -240,14 +240,14 @@ mnf_list:
     { $1 @ [$3] }
 
 mnf_blk:
-  PARAMS LBRACE mnf_list RBRACE
+  MANIF LBRACE mnf_list RBRACE
   { $3 }
 
 var_list_aux:
     DOFID
-    { [ $1 ] }
+    { [ VarId($1) ] }
   | var_list_aux COMMA DOFID
-    { $1 @ [$3] }
+    { $1 @ [ VarId($3)] }
 
 var_list:
   LPAREN var_list_aux RPAREN
@@ -255,7 +255,7 @@ var_list:
 
 diff_eqn_def:
   DIFFEQ DOFID DEON var_list DEBY var_list
-  { { diff_var = $2; diff_on = $4; diff_by = $6 } }
+  { { diff_var = VarId($2); diff_on = $4; diff_by = $6 } }
 
 val_stmt:
     REAL
@@ -287,15 +287,15 @@ val_list_list:
 
 alg_exp_atm:
     REAL
-    { RealVal($1) }
+    { RealSDE($1) }
   | COMPLEX
-    { ComplexVal($1) }
+    { ComplexSDE($1) }
   | TIME
-    { TimeVal($1) }
+    { TimeSDE($1) }
   | DOFID
-    { VarId($1) }
+    { VarSDE($1) }
   | PARID
-    { ParId($1)}
+    { ParSDE($1)}
   | OPSIN LPAREN alg_expr RPAREN
     { UnaryOp(Sin, $3) }
   | OPCOS LPAREN alg_expr RPAREN
@@ -425,7 +425,7 @@ sde_list:
 
 init_pair:
   LPAREN DOFID COMMA val_stmt RPAREN
-  { { vid = $2; vval = $4 } }
+  { { vid = VarId($2); vval = $4 } }
 
 init_list_aux:
     init_pair

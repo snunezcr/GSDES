@@ -124,27 +124,28 @@ type differential = {
   diff_by : varid list;
 }
 
-(* Algebraic expression for Fokker-Planck equations *)
-type fpe_expr =
-    VarId of string
-  | ParId of string
-  | RealVal of float
-  | ComplexVal of float * float
-  | TimeVal of float
-  | BinaryOp of fpe_expr * binop * fpe_expr
-  | UnaryOp of unop * fpe_expr
-  | Sum of varid list * fpe_expr
-  | Diff of differential * fpe_expr
+(* Algebraic expression for stochastic differential equations and  *)
+(* Fokker-Planck equations.                                        *)
+type sde_expr =
+    VarSDE of string
+  | ParSDE of string
+  | RealSDE of float
+  | ComplexSDE of Complex.t
+  | TimeSDE of float
+  | BinaryOp of sde_expr * binop * sde_expr
+  | UnaryOp of unop * sde_expr
+  | Sum of varid list * sde_expr
+  | Diff of differential * sde_expr
 
 (* Fokker-Planck drift *)
 type fpe_drift =
     DriftFix of var_value list
-  | DriftAlg of fpe_expr
+  | DriftAlg of sde_expr
 
 (* Fokker-Planck diffusion *)
 type fpe_diffusion =
     DiffsnFix of var_value list list
-  | DiffsnAlg of fpe_expr
+  | DiffsnAlg of sde_expr
 
 (* Fokker-Planck statement *)
 type fpe_stmt = {
@@ -153,17 +154,6 @@ type fpe_stmt = {
   fdrift : fpe_drift;
   fdiffsn : fpe_diffusion;
 }
-
-(* Algebraic expression for stochastic differential equations *)
-type sde_expr =
-    VarId of string
-  | ParId of string
-  | RealVal of float
-  | ComplexVal of Complex.t
-  | TimeVal of float
-  | BinaryOp of sde_expr * binop * sde_expr
-  | UnaryOp of unop * sde_expr
-  | Sum of varid list * sde_expr
 
 (* Representation for an SDE *)
 type sde_stmt = Sde of differential * sde_expr
@@ -207,5 +197,5 @@ type model = {
   mnfld_block : mfld_stmt list;
   fpe_block : fpe_stmt list;
   system_block : level_stmt list;
-  outpt_block : outpt_stmt list;
+  outpt_block : outpt_stmt;
 }

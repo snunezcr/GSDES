@@ -9,7 +9,7 @@
 # Eric Jakobsson <jake@illinois.edu                     #
 #########################################################
 
-OBJS = ast.cmo parser.cmo lexer.cmo parseutils.cmo main.cmo
+OBJS = parseutils.cma ast.cmo parser.cmo lexer.cmo main.cmo
 MAIN = gsdescc
 OCAMLC = ocamlc
 
@@ -18,22 +18,25 @@ OCFLAG = -w -4
 build : clean $(MAIN)
 
 $(MAIN) : $(OBJS)
-	$(OCAMLC) -o $@ $(OBJS)
+	$(OCAMLC) -o $@ parseutils.cma str.cma $(OBJS)
+
+parseutils.cma:
+	$(OCAMLC) -a parseutils.ml -o $@
 
 lexer.ml : lexer.mll
 	ocamllex lexer.mll
 
 parser.ml parser.mli : parser.mly
 	ocamlyacc parser.mly
-	$(OCAMLC) $(OCFLAG) -c parser.mli parseutils.cmo
+	$(OCAMLC) $(OCFLAG) -c parser.mli
 
 %.cmi : %.mli
 	$(OCAMLC) $(OCFLAG) -c $<
 
-%.cmo : %.ml parseutils.cmo
+%.cmo : %.ml
 	$(OCAMLC) $(OCFLAG) -c $<
 
 .PHONY : clean
 clean :
-	-rm -f $(MAIN) parser.ml parser.mli lexer.ml testall.log \
+	-rm -f $(MAIN) parseutils.cma parser.ml parser.mli lexer.ml testall.log \
 	*.cmo *.cmi *.output *.diff *~ *.o *.cmx
