@@ -37,7 +37,7 @@ The present project is to create a differential equation solver that will use
 Lebesgue integration.  The significance of the project will be to enable
 Lebesgue integration in a general differential equation solver, thus making
 stochastic representations of dynamical systems more efficient, and therefore
-more feasible. 
+more feasible.
 
 ## Project structure
 
@@ -67,7 +67,9 @@ After reaching the v1.0 milestone, our goal is to add the following features:
 ## Funding
 
 This work is funded by the Informatics PhD Program at UIUC and the ACM/SIGHPC
-Computational and Data Science Fellows 2017 Program.
+Computational and Data Science Fellows 2017 Program. In addition, this research
+has been partially funded by the Citizen Network of Meteorological Stations,
+Costa Rica.
 
 ## References
 
