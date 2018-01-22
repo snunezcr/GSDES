@@ -357,30 +357,22 @@ alg_exp_pow:
   | alg_exp_atm
     { $1 }
 
-alg_exp_div:
-    alg_exp_div OPDIVIDE alg_exp_pow
+alg_exp_prod:
+    alg_exp_prod OPTIMES alg_exp_pow
+    { BinaryOp($1, Times, $3) }
+  | alg_exp_prod OPDIVIDE alg_exp_pow
     { BinaryOp($1, Divide, $3) }
   | alg_exp_pow
     { $1 }
 
-alg_exp_prod:
-    alg_exp_prod OPTIMES alg_exp_div
-    { BinaryOp($1, Times, $3) }
-  | alg_exp_div
-    { $1 }
-
-alg_exp_sub:
-    alg_exp_sub OPMINUS alg_exp_prod
+alg_exp_add:
+    alg_exp_add OPSUM alg_exp_prod
+    { BinaryOp($1, Plus, $3) }
+  | alg_exp_add OPMINUS alg_exp_prod
     { BinaryOp($1, Minus, $3) }
   | OPMINUS alg_exp_prod
     { UnaryOp(Neg, $2) }
   | alg_exp_prod
-    { $1 }
-
-alg_exp_add:
-    alg_exp_add OPSUM alg_exp_sub
-    { BinaryOp($1, Plus, $3) }
-  | alg_exp_sub
     { $1 }
 
 alg_expr:
