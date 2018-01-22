@@ -8,7 +8,7 @@
 (* Santiago Nunez-Corrales <nunezco2@illinois.edu>        *)
 (* Eric Jakobsson <jake@illinois.edu>                     *)
 (**********************************************************)
-open Utils
+open Parseutils
 
 exception SyntaxError of string
 
@@ -68,7 +68,7 @@ type prb_function =
 (* Values *)
 type var_value =
     RealVal of float
-  | ComplexVal of float * float
+  | ComplexVal of Complex.t
   | TimeVal of float
 
 (* Interval representation *)
@@ -159,7 +159,7 @@ type sde_expr =
     VarId of string
   | ParId of string
   | RealVal of float
-  | ComplexVal of float * float
+  | ComplexVal of Complex.t
   | TimeVal of float
   | BinaryOp of sde_expr * binop * sde_expr
   | UnaryOp of unop * sde_expr

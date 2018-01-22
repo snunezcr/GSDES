@@ -11,7 +11,7 @@
 {
   open Parser
   open Lexing
-  open Utils
+  open Parseutils
 
   exception LexingError of string
 

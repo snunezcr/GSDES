@@ -10,7 +10,7 @@
 /**********************************************************/
 %{
   open Ast
-  open Utils
+  open Parseutils
 %}
 
 %token LPAREN RPAREN LSBRACK RSBRACK LBRACE RBRACE SEMI COMMA ASSIGN
@@ -41,8 +41,8 @@
 %token <float> REAL
 %token <float> TIME
 %token <Complex.t> COMPLEX
-%token <Utils.avers> VERSION
-%token <Utils.adate> DATE
+%token <Parseutils.avers> VERSION
+%token <Parseutils.adate> DATE
 %token <string> STRLIT
 %token EOF
 
@@ -96,13 +96,13 @@ an_ver:
   { $2 }
 
 an_dt:
-  ANDATE VERSION SEMI
+  ANDATE DATE SEMI
   { $2 }
 
 ant_stmt:
   ANNOTS LBRACE an_nm an_dsc an_auts an_affs an_ver an_dt RBRACE
   {
-    { aname = $3; adesc = $4; aauths $5;
+    { aname = $3; adesc = $4; aauths = $5;
       aaffils = $6; aversion = $7; adate = $8 }
   }
 
@@ -181,7 +181,7 @@ var_dist_type:
   | DGAMMA
     { Gamma }
   | DFPE FPEID
-    { FpeID($2) }
+    { FpeId($2) }
 
 var_dist:
   QDIST var_dist_type SEMI
@@ -199,11 +199,11 @@ var_args:
 
 par_stmt:
     TGIVEN var_type PARID LBRACE var_lab par_src RBRACE
-    { GivenPar($3, $2, $5, $6) }
+    { GivenPar(ParId($3), $2, $5, $6) }
   | TDET var_type PARID LBRACE var_lab var_val RBRACE
-    { DetPar($3, $2, $5, $6) }
+    { DetPar(ParId($3), $2, $5, $6) }
   | TSTO var_type PARID LBRACE var_lab var_dist var_args RBRACE
-    { StoPar($3, $2, $5, $6, $7) }
+    { StoPar(ParId($3), $2, $5, $6, $7) }
 
 par_list:
     /* Empty: no parameters may be required */
