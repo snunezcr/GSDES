@@ -68,8 +68,8 @@ After reaching the v1.0 milestone, our goal is to add the following features:
 
 This work is funded by the Informatics PhD Program at UIUC and the ACM/SIGHPC
 Computational and Data Science Fellows 2017 Program. In addition, this research
-has been partially funded by the Citizen Network of Meteorological Stations,
-Costa Rica.
+has been partially funded by the Citizen Network of Meteorological Stations
+(RECIEM), Costa Rica.
 
 ## References
 
