@@ -9,7 +9,8 @@
 # Eric Jakobsson <jake@illinois.edu                     #
 #########################################################
 
-OBJS = parseutils.cma ast.cmo parser.cmo lexer.cmo main.cmo
+OBJS = parseutils.cma ast.cmo sast.cmo parser.cmo lexer.cmo \
+			 main.cmo
 MAIN = gsdescc
 OCAMLC = ocamlc
 
