@@ -65931,11 +65931,11 @@
 											"containerExtending": false,
 											"left": 0,
 											"top": 0,
-											"width": 73,
+											"width": 76,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Model)",
+											"text": "(from lebeng)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -66279,11 +66279,11 @@
 											"containerExtending": false,
 											"left": 0,
 											"top": 0,
-											"width": 73,
+											"width": 76,
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "(from Model)",
+											"text": "(from lebeng)",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5,
 											"wordWrap": false
@@ -95783,237 +95783,237 @@
 							"isFinalSpecialization": false,
 							"isLeaf": false,
 							"isActive": false
-						}
-					],
-					"visibility": "public"
-				},
-				{
-					"_type": "UMLClass",
-					"_id": "AAAAAAFiFsyCInIc52s=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "NamedConstantCase",
-					"ownedElements": [
-						{
-							"_type": "UMLAssociation",
-							"_id": "AAAAAAFiFtDfvhAXHPo=",
-							"_parent": {
-								"$ref": "AAAAAAFiFsyCInIc52s="
-							},
-							"end1": {
-								"_type": "UMLAssociationEnd",
-								"_id": "AAAAAAFiFtDfvhAYf/s=",
-								"_parent": {
-									"$ref": "AAAAAAFiFtDfvhAXHPo="
-								},
-								"reference": {
-									"$ref": "AAAAAAFiFsyCInIc52s="
-								},
-								"visibility": "public",
-								"navigable": false,
-								"aggregation": "none",
-								"isReadOnly": false,
-								"isOrdered": false,
-								"isUnique": false,
-								"isDerived": false,
-								"isID": false
-							},
-							"end2": {
-								"_type": "UMLAssociationEnd",
-								"_id": "AAAAAAFiFtDfvhAZIy8=",
-								"_parent": {
-									"$ref": "AAAAAAFiFtDfvhAXHPo="
-								},
-								"reference": {
-									"$ref": "AAAAAAFiFs6n8MvpkDs="
-								},
-								"visibility": "public",
-								"navigable": true,
-								"aggregation": "none",
-								"isReadOnly": false,
-								"isOrdered": false,
-								"isUnique": false,
-								"isDerived": false,
-								"isID": false
-							},
-							"visibility": "public",
-							"isDerived": false
-						}
-					],
-					"visibility": "public",
-					"attributes": [
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFiFszNl34W980=",
-							"_parent": {
-								"$ref": "AAAAAAFiFsyCInIc52s="
-							},
-							"name": "parameters[]",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"type": "double",
-							"isReadOnly": false,
-							"isOrdered": false,
-							"isUnique": false,
-							"isDerived": false,
-							"aggregation": "none",
-							"isID": false
 						},
 						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFiFs00QozhFUY=",
+							"_type": "UMLClass",
+							"_id": "AAAAAAFiFsyCInIc52s=",
 							"_parent": {
-								"$ref": "AAAAAAFiFsyCInIc52s="
+								"$ref": "AAAAAAFh841AJXoVMi8="
 							},
-							"name": "algorithm",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"type": {
-								"$ref": "AAAAAAFh872496//+mA="
-							},
-							"isReadOnly": false,
-							"isOrdered": false,
-							"isUnique": false,
-							"isDerived": false,
-							"aggregation": "none",
-							"isID": false
-						}
-					],
-					"isAbstract": false,
-					"isFinalSpecialization": false,
-					"isLeaf": false,
-					"isActive": false
-				},
-				{
-					"_type": "UMLClass",
-					"_id": "AAAAAAFiFs6n8MvpkDs=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "KnownNamedConstants",
-					"ownedElements": [
-						{
-							"_type": "UMLAssociation",
-							"_id": "AAAAAAFiFtHu5DIwu0w=",
-							"_parent": {
-								"$ref": "AAAAAAFiFs6n8MvpkDs="
-							},
-							"end1": {
-								"_type": "UMLAssociationEnd",
-								"_id": "AAAAAAFiFtHu5TIxHq8=",
-								"_parent": {
-									"$ref": "AAAAAAFiFtHu5DIwu0w="
-								},
-								"reference": {
-									"$ref": "AAAAAAFiFs6n8MvpkDs="
-								},
-								"visibility": "public",
-								"navigable": true,
-								"aggregation": "none",
-								"isReadOnly": false,
-								"isOrdered": false,
-								"isUnique": false,
-								"isDerived": false,
-								"isID": false
-							},
-							"end2": {
-								"_type": "UMLAssociationEnd",
-								"_id": "AAAAAAFiFtHu5TIyXYg=",
-								"_parent": {
-									"$ref": "AAAAAAFiFtHu5DIwu0w="
-								},
-								"reference": {
-									"$ref": "AAAAAAFiFka6ThitBE4="
-								},
-								"visibility": "public",
-								"navigable": true,
-								"aggregation": "composite",
-								"isReadOnly": false,
-								"isOrdered": false,
-								"isUnique": false,
-								"isDerived": false,
-								"isID": false
-							},
-							"visibility": "public",
-							"isDerived": false
-						}
-					],
-					"visibility": "public",
-					"attributes": [
-						{
-							"_type": "UMLAttribute",
-							"_id": "AAAAAAFiFs76+dfj6Uo=",
-							"_parent": {
-								"$ref": "AAAAAAFiFs6n8MvpkDs="
-							},
-							"name": "mapping",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"type": "map<string,NamedConstantCase>",
-							"isReadOnly": false,
-							"isOrdered": false,
-							"isUnique": false,
-							"isDerived": false,
-							"aggregation": "none",
-							"isID": false
-						}
-					],
-					"operations": [
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFiFtAR9vN7Q2o=",
-							"_parent": {
-								"$ref": "AAAAAAFiFs6n8MvpkDs="
-							},
-							"name": "init",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAFiFtBtbAJGHcE=",
-							"_parent": {
-								"$ref": "AAAAAAFiFs6n8MvpkDs="
-							},
-							"name": "map",
-							"visibility": "public",
-							"isStatic": false,
-							"isLeaf": false,
-							"parameters": [
+							"name": "NamedConstantCase",
+							"ownedElements": [
 								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFiFtCO3A0huSE=",
+									"_type": "UMLAssociation",
+									"_id": "AAAAAAFiFtDfvhAXHPo=",
 									"_parent": {
-										"$ref": "AAAAAAFiFtBtbAJGHcE="
+										"$ref": "AAAAAAFiFsyCInIc52s="
 									},
-									"name": "string",
+									"end1": {
+										"_type": "UMLAssociationEnd",
+										"_id": "AAAAAAFiFtDfvhAYf/s=",
+										"_parent": {
+											"$ref": "AAAAAAFiFtDfvhAXHPo="
+										},
+										"reference": {
+											"$ref": "AAAAAAFiFsyCInIc52s="
+										},
+										"visibility": "public",
+										"navigable": false,
+										"aggregation": "none",
+										"isReadOnly": false,
+										"isOrdered": false,
+										"isUnique": false,
+										"isDerived": false,
+										"isID": false
+									},
+									"end2": {
+										"_type": "UMLAssociationEnd",
+										"_id": "AAAAAAFiFtDfvhAZIy8=",
+										"_parent": {
+											"$ref": "AAAAAAFiFtDfvhAXHPo="
+										},
+										"reference": {
+											"$ref": "AAAAAAFiFs6n8MvpkDs="
+										},
+										"visibility": "public",
+										"navigable": true,
+										"aggregation": "none",
+										"isReadOnly": false,
+										"isOrdered": false,
+										"isUnique": false,
+										"isDerived": false,
+										"isID": false
+									},
+									"visibility": "public",
+									"isDerived": false
+								}
+							],
+							"visibility": "public",
+							"attributes": [
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAFiFszNl34W980=",
+									"_parent": {
+										"$ref": "AAAAAAFiFsyCInIc52s="
+									},
+									"name": "parameters[]",
 									"visibility": "public",
 									"isStatic": false,
 									"isLeaf": false,
-									"type": "",
+									"type": "double",
 									"isReadOnly": false,
 									"isOrdered": false,
 									"isUnique": false,
-									"direction": "in"
+									"isDerived": false,
+									"aggregation": "none",
+									"isID": false
+								},
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAFiFs00QozhFUY=",
+									"_parent": {
+										"$ref": "AAAAAAFiFsyCInIc52s="
+									},
+									"name": "algorithm",
+									"visibility": "public",
+									"isStatic": false,
+									"isLeaf": false,
+									"type": {
+										"$ref": "AAAAAAFh872496//+mA="
+									},
+									"isReadOnly": false,
+									"isOrdered": false,
+									"isUnique": false,
+									"isDerived": false,
+									"aggregation": "none",
+									"isID": false
 								}
 							],
-							"concurrency": "sequential",
-							"isQuery": false,
-							"isAbstract": false
+							"isAbstract": false,
+							"isFinalSpecialization": false,
+							"isLeaf": false,
+							"isActive": false
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAFiFs6n8MvpkDs=",
+							"_parent": {
+								"$ref": "AAAAAAFh841AJXoVMi8="
+							},
+							"name": "KnownNamedConstants",
+							"ownedElements": [
+								{
+									"_type": "UMLAssociation",
+									"_id": "AAAAAAFiFtHu5DIwu0w=",
+									"_parent": {
+										"$ref": "AAAAAAFiFs6n8MvpkDs="
+									},
+									"end1": {
+										"_type": "UMLAssociationEnd",
+										"_id": "AAAAAAFiFtHu5TIxHq8=",
+										"_parent": {
+											"$ref": "AAAAAAFiFtHu5DIwu0w="
+										},
+										"reference": {
+											"$ref": "AAAAAAFiFs6n8MvpkDs="
+										},
+										"visibility": "public",
+										"navigable": true,
+										"aggregation": "none",
+										"isReadOnly": false,
+										"isOrdered": false,
+										"isUnique": false,
+										"isDerived": false,
+										"isID": false
+									},
+									"end2": {
+										"_type": "UMLAssociationEnd",
+										"_id": "AAAAAAFiFtHu5TIyXYg=",
+										"_parent": {
+											"$ref": "AAAAAAFiFtHu5DIwu0w="
+										},
+										"reference": {
+											"$ref": "AAAAAAFiFka6ThitBE4="
+										},
+										"visibility": "public",
+										"navigable": true,
+										"aggregation": "composite",
+										"isReadOnly": false,
+										"isOrdered": false,
+										"isUnique": false,
+										"isDerived": false,
+										"isID": false
+									},
+									"visibility": "public",
+									"isDerived": false
+								}
+							],
+							"visibility": "public",
+							"attributes": [
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAFiFs76+dfj6Uo=",
+									"_parent": {
+										"$ref": "AAAAAAFiFs6n8MvpkDs="
+									},
+									"name": "mapping",
+									"visibility": "public",
+									"isStatic": false,
+									"isLeaf": false,
+									"type": "map<string,NamedConstantCase>",
+									"isReadOnly": false,
+									"isOrdered": false,
+									"isUnique": false,
+									"isDerived": false,
+									"aggregation": "none",
+									"isID": false
+								}
+							],
+							"operations": [
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAFiFtAR9vN7Q2o=",
+									"_parent": {
+										"$ref": "AAAAAAFiFs6n8MvpkDs="
+									},
+									"name": "init",
+									"visibility": "public",
+									"isStatic": false,
+									"isLeaf": false,
+									"concurrency": "sequential",
+									"isQuery": false,
+									"isAbstract": false
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAFiFtBtbAJGHcE=",
+									"_parent": {
+										"$ref": "AAAAAAFiFs6n8MvpkDs="
+									},
+									"name": "map",
+									"visibility": "public",
+									"isStatic": false,
+									"isLeaf": false,
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAFiFtCO3A0huSE=",
+											"_parent": {
+												"$ref": "AAAAAAFiFtBtbAJGHcE="
+											},
+											"name": "string",
+											"visibility": "public",
+											"isStatic": false,
+											"isLeaf": false,
+											"type": "",
+											"isReadOnly": false,
+											"isOrdered": false,
+											"isUnique": false,
+											"direction": "in"
+										}
+									],
+									"concurrency": "sequential",
+									"isQuery": false,
+									"isAbstract": false
+								}
+							],
+							"isAbstract": false,
+							"isFinalSpecialization": false,
+							"isLeaf": false,
+							"isActive": false
 						}
 					],
-					"isAbstract": false,
-					"isFinalSpecialization": false,
-					"isLeaf": false,
-					"isActive": false
+					"visibility": "public"
 				}
 			],
 			"visibility": "public"
