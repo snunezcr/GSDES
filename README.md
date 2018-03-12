@@ -1,15 +1,23 @@
 # GSDES
 # Generalized Stochastic Differential Equations Solver
 
-**Prof. Eric Jakobsson (jake@illinois.edu)**
-
-*Beckman Institute for Advanced Science and Technology, UIUC*
-
 **Santiago Nunez-Corrales (nunezco2@illinois.edu)**
 
 *National Center for Supercomputing Applications, UIUC*
 
 *Illinois Informatics Institute, UIUC*
+
+**Prof. Eric Jakobsson (jake@illinois.edu)**
+
+*Beckman Institute for Advanced Science and Technology, UIUC*
+
+**Prof. Les Gasser (gasser@illinois.edu)**
+
+*National Center for Supercomputing Applications, UIUC*
+
+*School of Information Science, UIUC*
+
+*Beckman Institute for Advanced Science and Technology, UIUC*
 
 ## Executive summary
 
