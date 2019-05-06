@@ -11,7 +11,7 @@
 
 *Beckman Institute for Advanced Science and Technology, UIUC*
 
-**Prof. Les Gasser (gasser@illinois.edu)†***
+**Prof. Les Gasser (gasser@illinois.edu)†**
 
 *National Center for Supercomputing Applications, UIUC*
 
